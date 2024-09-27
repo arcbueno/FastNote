@@ -7,40 +7,40 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		A8BA47722CA62C22005993D8 /* PBXContainerItemProxy */ = {
+		A865CC042CA63DD60087F0EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A8BA47532CA62C20005993D8 /* Project object */;
+			containerPortal = A865CBE52CA63DD40087F0EA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A8BA475A2CA62C20005993D8;
+			remoteGlobalIDString = A865CBEC2CA63DD40087F0EA;
 			remoteInfo = FastNote;
 		};
-		A8BA477C2CA62C22005993D8 /* PBXContainerItemProxy */ = {
+		A865CC0E2CA63DD60087F0EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A8BA47532CA62C20005993D8 /* Project object */;
+			containerPortal = A865CBE52CA63DD40087F0EA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A8BA475A2CA62C20005993D8;
+			remoteGlobalIDString = A865CBEC2CA63DD40087F0EA;
 			remoteInfo = FastNote;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A8BA475B2CA62C20005993D8 /* FastNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8BA47712CA62C22005993D8 /* FastNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8BA477B2CA62C22005993D8 /* FastNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A865CBED2CA63DD40087F0EA /* FastNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A865CC032CA63DD60087F0EA /* FastNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A865CC0D2CA63DD60087F0EA /* FastNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A8BA475D2CA62C20005993D8 /* FastNote */ = {
+		A865CBEF2CA63DD40087F0EA /* FastNote */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FastNote;
 			sourceTree = "<group>";
 		};
-		A8BA47742CA62C22005993D8 /* FastNoteTests */ = {
+		A865CC062CA63DD60087F0EA /* FastNoteTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FastNoteTests;
 			sourceTree = "<group>";
 		};
-		A8BA477E2CA62C22005993D8 /* FastNoteUITests */ = {
+		A865CC102CA63DD60087F0EA /* FastNoteUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FastNoteUITests;
 			sourceTree = "<group>";
@@ -48,21 +48,21 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A8BA47582CA62C20005993D8 /* Frameworks */ = {
+		A865CBEA2CA63DD40087F0EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA476E2CA62C22005993D8 /* Frameworks */ = {
+		A865CC002CA63DD60087F0EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA47782CA62C22005993D8 /* Frameworks */ = {
+		A865CC0A2CA63DD60087F0EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,22 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A8BA47522CA62C20005993D8 = {
+		A865CBE42CA63DD40087F0EA = {
 			isa = PBXGroup;
 			children = (
-				A8BA475D2CA62C20005993D8 /* FastNote */,
-				A8BA47742CA62C22005993D8 /* FastNoteTests */,
-				A8BA477E2CA62C22005993D8 /* FastNoteUITests */,
-				A8BA475C2CA62C20005993D8 /* Products */,
+				A865CBEF2CA63DD40087F0EA /* FastNote */,
+				A865CC062CA63DD60087F0EA /* FastNoteTests */,
+				A865CC102CA63DD60087F0EA /* FastNoteUITests */,
+				A865CBEE2CA63DD40087F0EA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A8BA475C2CA62C20005993D8 /* Products */ = {
+		A865CBEE2CA63DD40087F0EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A8BA475B2CA62C20005993D8 /* FastNote.app */,
-				A8BA47712CA62C22005993D8 /* FastNoteTests.xctest */,
-				A8BA477B2CA62C22005993D8 /* FastNoteUITests.xctest */,
+				A865CBED2CA63DD40087F0EA /* FastNote.app */,
+				A865CC032CA63DD60087F0EA /* FastNoteTests.xctest */,
+				A865CC0D2CA63DD60087F0EA /* FastNoteUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,134 +95,134 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A8BA475A2CA62C20005993D8 /* FastNote */ = {
+		A865CBEC2CA63DD40087F0EA /* FastNote */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A8BA47852CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNote" */;
+			buildConfigurationList = A865CC172CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNote" */;
 			buildPhases = (
-				A8BA47572CA62C20005993D8 /* Sources */,
-				A8BA47582CA62C20005993D8 /* Frameworks */,
-				A8BA47592CA62C20005993D8 /* Resources */,
+				A865CBE92CA63DD40087F0EA /* Sources */,
+				A865CBEA2CA63DD40087F0EA /* Frameworks */,
+				A865CBEB2CA63DD40087F0EA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A8BA475D2CA62C20005993D8 /* FastNote */,
+				A865CBEF2CA63DD40087F0EA /* FastNote */,
 			);
 			name = FastNote;
 			packageProductDependencies = (
 			);
 			productName = FastNote;
-			productReference = A8BA475B2CA62C20005993D8 /* FastNote.app */;
+			productReference = A865CBED2CA63DD40087F0EA /* FastNote.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A8BA47702CA62C22005993D8 /* FastNoteTests */ = {
+		A865CC022CA63DD60087F0EA /* FastNoteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A8BA47882CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNoteTests" */;
+			buildConfigurationList = A865CC1A2CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNoteTests" */;
 			buildPhases = (
-				A8BA476D2CA62C22005993D8 /* Sources */,
-				A8BA476E2CA62C22005993D8 /* Frameworks */,
-				A8BA476F2CA62C22005993D8 /* Resources */,
+				A865CBFF2CA63DD60087F0EA /* Sources */,
+				A865CC002CA63DD60087F0EA /* Frameworks */,
+				A865CC012CA63DD60087F0EA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A8BA47732CA62C22005993D8 /* PBXTargetDependency */,
+				A865CC052CA63DD60087F0EA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				A8BA47742CA62C22005993D8 /* FastNoteTests */,
+				A865CC062CA63DD60087F0EA /* FastNoteTests */,
 			);
 			name = FastNoteTests;
 			packageProductDependencies = (
 			);
 			productName = FastNoteTests;
-			productReference = A8BA47712CA62C22005993D8 /* FastNoteTests.xctest */;
+			productReference = A865CC032CA63DD60087F0EA /* FastNoteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A8BA477A2CA62C22005993D8 /* FastNoteUITests */ = {
+		A865CC0C2CA63DD60087F0EA /* FastNoteUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A8BA478B2CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNoteUITests" */;
+			buildConfigurationList = A865CC1D2CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNoteUITests" */;
 			buildPhases = (
-				A8BA47772CA62C22005993D8 /* Sources */,
-				A8BA47782CA62C22005993D8 /* Frameworks */,
-				A8BA47792CA62C22005993D8 /* Resources */,
+				A865CC092CA63DD60087F0EA /* Sources */,
+				A865CC0A2CA63DD60087F0EA /* Frameworks */,
+				A865CC0B2CA63DD60087F0EA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A8BA477D2CA62C22005993D8 /* PBXTargetDependency */,
+				A865CC0F2CA63DD60087F0EA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				A8BA477E2CA62C22005993D8 /* FastNoteUITests */,
+				A865CC102CA63DD60087F0EA /* FastNoteUITests */,
 			);
 			name = FastNoteUITests;
 			packageProductDependencies = (
 			);
 			productName = FastNoteUITests;
-			productReference = A8BA477B2CA62C22005993D8 /* FastNoteUITests.xctest */;
+			productReference = A865CC0D2CA63DD60087F0EA /* FastNoteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A8BA47532CA62C20005993D8 /* Project object */ = {
+		A865CBE52CA63DD40087F0EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					A8BA475A2CA62C20005993D8 = {
+					A865CBEC2CA63DD40087F0EA = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					A8BA47702CA62C22005993D8 = {
+					A865CC022CA63DD60087F0EA = {
 						CreatedOnToolsVersion = 16.0;
-						TestTargetID = A8BA475A2CA62C20005993D8;
+						TestTargetID = A865CBEC2CA63DD40087F0EA;
 					};
-					A8BA477A2CA62C22005993D8 = {
+					A865CC0C2CA63DD60087F0EA = {
 						CreatedOnToolsVersion = 16.0;
-						TestTargetID = A8BA475A2CA62C20005993D8;
+						TestTargetID = A865CBEC2CA63DD40087F0EA;
 					};
 				};
 			};
-			buildConfigurationList = A8BA47562CA62C20005993D8 /* Build configuration list for PBXProject "FastNote" */;
+			buildConfigurationList = A865CBE82CA63DD40087F0EA /* Build configuration list for PBXProject "FastNote" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A8BA47522CA62C20005993D8;
+			mainGroup = A865CBE42CA63DD40087F0EA;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = A8BA475C2CA62C20005993D8 /* Products */;
+			productRefGroup = A865CBEE2CA63DD40087F0EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A8BA475A2CA62C20005993D8 /* FastNote */,
-				A8BA47702CA62C22005993D8 /* FastNoteTests */,
-				A8BA477A2CA62C22005993D8 /* FastNoteUITests */,
+				A865CBEC2CA63DD40087F0EA /* FastNote */,
+				A865CC022CA63DD60087F0EA /* FastNoteTests */,
+				A865CC0C2CA63DD60087F0EA /* FastNoteUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A8BA47592CA62C20005993D8 /* Resources */ = {
+		A865CBEB2CA63DD40087F0EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA476F2CA62C22005993D8 /* Resources */ = {
+		A865CC012CA63DD60087F0EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA47792CA62C22005993D8 /* Resources */ = {
+		A865CC0B2CA63DD60087F0EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,21 +232,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A8BA47572CA62C20005993D8 /* Sources */ = {
+		A865CBE92CA63DD40087F0EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA476D2CA62C22005993D8 /* Sources */ = {
+		A865CBFF2CA63DD60087F0EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A8BA47772CA62C22005993D8 /* Sources */ = {
+		A865CC092CA63DD60087F0EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,20 +256,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A8BA47732CA62C22005993D8 /* PBXTargetDependency */ = {
+		A865CC052CA63DD60087F0EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A8BA475A2CA62C20005993D8 /* FastNote */;
-			targetProxy = A8BA47722CA62C22005993D8 /* PBXContainerItemProxy */;
+			target = A865CBEC2CA63DD40087F0EA /* FastNote */;
+			targetProxy = A865CC042CA63DD60087F0EA /* PBXContainerItemProxy */;
 		};
-		A8BA477D2CA62C22005993D8 /* PBXTargetDependency */ = {
+		A865CC0F2CA63DD60087F0EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A8BA475A2CA62C20005993D8 /* FastNote */;
-			targetProxy = A8BA477C2CA62C22005993D8 /* PBXContainerItemProxy */;
+			target = A865CBEC2CA63DD40087F0EA /* FastNote */;
+			targetProxy = A865CC0E2CA63DD60087F0EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		A8BA47832CA62C22005993D8 /* Debug */ = {
+		A865CC152CA63DD60087F0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -330,7 +330,7 @@
 			};
 			name = Debug;
 		};
-		A8BA47842CA62C22005993D8 /* Release */ = {
+		A865CC162CA63DD60087F0EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -383,7 +383,7 @@
 			};
 			name = Release;
 		};
-		A8BA47862CA62C22005993D8 /* Debug */ = {
+		A865CC182CA63DD60087F0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -422,7 +422,7 @@
 			};
 			name = Debug;
 		};
-		A8BA47872CA62C22005993D8 /* Release */ = {
+		A865CC192CA63DD60087F0EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -461,7 +461,7 @@
 			};
 			name = Release;
 		};
-		A8BA47892CA62C22005993D8 /* Debug */ = {
+		A865CC1B2CA63DD60087F0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,7 +484,7 @@
 			};
 			name = Debug;
 		};
-		A8BA478A2CA62C22005993D8 /* Release */ = {
+		A865CC1C2CA63DD60087F0EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -507,7 +507,7 @@
 			};
 			name = Release;
 		};
-		A8BA478C2CA62C22005993D8 /* Debug */ = {
+		A865CC1E2CA63DD60087F0EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -529,7 +529,7 @@
 			};
 			name = Debug;
 		};
-		A8BA478D2CA62C22005993D8 /* Release */ = {
+		A865CC1F2CA63DD60087F0EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -554,43 +554,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A8BA47562CA62C20005993D8 /* Build configuration list for PBXProject "FastNote" */ = {
+		A865CBE82CA63DD40087F0EA /* Build configuration list for PBXProject "FastNote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A8BA47832CA62C22005993D8 /* Debug */,
-				A8BA47842CA62C22005993D8 /* Release */,
+				A865CC152CA63DD60087F0EA /* Debug */,
+				A865CC162CA63DD60087F0EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A8BA47852CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNote" */ = {
+		A865CC172CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A8BA47862CA62C22005993D8 /* Debug */,
-				A8BA47872CA62C22005993D8 /* Release */,
+				A865CC182CA63DD60087F0EA /* Debug */,
+				A865CC192CA63DD60087F0EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A8BA47882CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNoteTests" */ = {
+		A865CC1A2CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNoteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A8BA47892CA62C22005993D8 /* Debug */,
-				A8BA478A2CA62C22005993D8 /* Release */,
+				A865CC1B2CA63DD60087F0EA /* Debug */,
+				A865CC1C2CA63DD60087F0EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A8BA478B2CA62C22005993D8 /* Build configuration list for PBXNativeTarget "FastNoteUITests" */ = {
+		A865CC1D2CA63DD60087F0EA /* Build configuration list for PBXNativeTarget "FastNoteUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A8BA478C2CA62C22005993D8 /* Debug */,
-				A8BA478D2CA62C22005993D8 /* Release */,
+				A865CC1E2CA63DD60087F0EA /* Debug */,
+				A865CC1F2CA63DD60087F0EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A8BA47532CA62C20005993D8 /* Project object */;
+	rootObject = A865CBE52CA63DD40087F0EA /* Project object */;
 }
