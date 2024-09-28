@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             DrawerView(isOpen: $isOpen) {
-                HomeView()
+                HomeView(viewModel: HomeViewModel())
                     .navigationBarItems(leading: Button(action: {
                         withAnimation{
                             self.isOpen.toggle()
@@ -33,7 +33,7 @@ struct ContentView: View {
                         Text("Todas as notas")
                     }
                     Spacer()
-                }.background(.blue)
+                }
             }
         }
     }
@@ -42,7 +42,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 }
 
 
