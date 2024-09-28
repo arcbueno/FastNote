@@ -10,11 +10,12 @@ import CoreData
 
 struct ContentView: View {
     @State var isOpen = false
+    @State var currentPage: Pages = .newNote
     
     var body: some View {
         NavigationView {
             DrawerView(isOpen: $isOpen) {
-                HomeView(viewModel: HomeViewModel())
+                appPage
                     .navigationBarItems(leading: Button(action: {
                         withAnimation{
                             self.isOpen.toggle()
@@ -25,20 +26,36 @@ struct ContentView: View {
                 
             } drawer: {
                 Color.orange
-                VStack(alignment: .leading){
-                    Section{
-                        Text("Nova nota")
+                DrawerBody(
+                    currentPage: currentPage, onSelect: { page in
+                        print(page)
+//                            currentPage = page
                     }
-                    Section{
-                        Text("Todas as notas")
-                    }
-                    Spacer()
-                }
+                )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }
     
-    
+    var appPage: some View {
+        switch currentPage {
+        case .newNote:
+            return HomeView(viewModel: HomeViewModel())
+        case .list:
+            return HomeView(viewModel: HomeViewModel())
+        case .login:
+            return HomeView(viewModel: HomeViewModel())
+        case .signup:
+            return HomeView(viewModel: HomeViewModel())
+        }
+    }
+}
+
+enum Pages {
+    case newNote
+    case list
+    case login
+    case signup
 }
 
 #Preview {
