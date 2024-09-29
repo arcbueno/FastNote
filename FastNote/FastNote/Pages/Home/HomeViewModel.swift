@@ -12,7 +12,7 @@ class HomeViewModel : ObservableObject {
         noteAPI: NoteAPI(),
         noteDao: NoteDAO(persistentContainer: PersistenceController.shared.container)
     )
-    @Published var state: HomeState = FillingState()
+    @Published var state: HomeState = FillingHomeState()
     
     func save(text: String) -> Bool {
         let note = Note(text: text)

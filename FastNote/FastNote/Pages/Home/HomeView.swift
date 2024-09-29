@@ -34,7 +34,7 @@ struct HomeView: View {
                         TextField("Comprar pão...", text: $text,  axis: .vertical)
                         Spacer()
                     }
-                    if(viewModel.state is LoadingState){
+                    if(viewModel.state is LoadingHomeState){
                         ProgressView()
                     }
                 }

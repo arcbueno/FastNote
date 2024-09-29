@@ -7,7 +7,7 @@
 
 protocol HomeState {}
 
-class LoadingState: HomeState {}
+class LoadingHomeState: HomeState {}
 
-class FillingState: HomeState {}
+class FillingHomeState: HomeState {}
 

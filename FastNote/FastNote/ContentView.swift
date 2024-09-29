@@ -15,40 +15,42 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             DrawerView(isOpen: $isOpen) {
-                appPage
-                    .navigationBarItems(leading: Button(action: {
-                        withAnimation{
-                            self.isOpen.toggle()
-                        }
-                    }) {
-                        Image(systemName: "sidebar.left")
-                    })
+                ZStack{
+                    switch currentPage {
+                    case .newNote:
+                        HomeView(viewModel: HomeViewModel())
+                    case .list:
+                        NoteListView(viewModel: NoteListViewModel())
+                    case .login:
+                        HomeView(viewModel: HomeViewModel())
+                    case .signup:
+                        HomeView(viewModel: HomeViewModel())
+                    }
+                }
+                .toolbarBackground(.yellow, for: .navigationBar)
+                .navigationBarItems(leading: Button(action: {
+                    withAnimation{
+                        self.isOpen.toggle()
+                    }
+                }) {
+                    Image(systemName: "sidebar.left")
+                })
                 
             } drawer: {
                 Color.orange
                 DrawerBody(
                     currentPage: currentPage, onSelect: { page in
                         print(page)
-//                            currentPage = page
+                        self.currentPage = page
+                        self.isOpen.toggle()
                     }
                 )
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }
     
-    var appPage: some View {
-        switch currentPage {
-        case .newNote:
-            return HomeView(viewModel: HomeViewModel())
-        case .list:
-            return HomeView(viewModel: HomeViewModel())
-        case .login:
-            return HomeView(viewModel: HomeViewModel())
-        case .signup:
-            return HomeView(viewModel: HomeViewModel())
-        }
-    }
+    
 }
 
 enum Pages {
