@@ -7,6 +7,10 @@
 import SwiftUI
 
 extension Color {
+    init(uiColor: UIColor) {
+        self.init(uiColor.resolvedColor(with: .current))
+    }
+    
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
@@ -22,7 +26,7 @@ extension Color {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,
@@ -31,5 +35,31 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+    
+    func hex() -> String {
+        if self == .clear { return "transparent" }
+        return UIColor(self).hex()
+    }
 }
+
+extension UIColor {
+    func hex() -> String {
+        let resolvedColor = resolvedColor(with: .current)
+        if resolvedColor == .clear { return "transparent" }
+        
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        resolvedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        let redInt = Int(red * 255)
+        let greenInt = Int(green * 255)
+        let blueInt = Int(blue * 255)
+        
+        let c = String(format: "#%02X%02X%02X", redInt, greenInt, blueInt)
+        return c
+    }
+}
+
 

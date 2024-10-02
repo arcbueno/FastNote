@@ -34,18 +34,10 @@ class TagsListViewModel : ObservableObject {
                     print("Failed to fetch todos: \(error)")
                 }
             } receiveValue: { [weak self] tags in
-                self?.state = SuccessTagState(tagList: [Label(name: "lorem ipsum", color:"af4f4f"),
-                                                        Label(name: "lorem ipsum", color:"ABC123")
-                                                       ])
+                self?.state = SuccessTagState(tagList:tags)
             }.store(in: &cancellables)
         
     }
-    
-    //    func save(text: String) -> Bool {
-    //        let note = Label(text: text)
-    //        noteRepository.saveNewLabel(note: note)
-    //        return true
-    //    }
     
 }
 

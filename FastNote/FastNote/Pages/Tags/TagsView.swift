@@ -17,12 +17,27 @@ struct TagsView: View {
                 if(viewModel.state is SuccessTagState){
                     if let state = viewModel.state as? SuccessTagState {
                         
-                        ScrollView{
-                            VStack{
-                                ForEach(state.tagList, id: \.localId){ tag in
-                                    TagListItem(tag: tag)
+                        VStack{
+                            HStack{
+                                Text("Tags")
+                                    .font(.title)
+                                Spacer()
+                                NavigationLink {
+                                    NewTagView(viewModel: NewTagViewModel())
+                                } label: {
+                                    Text("Criar")
+                                }.onAppear {
+                                    viewModel.getAll()
                                 }
-                            }.padding()
+                            }
+                            .padding(.horizontal, 8)
+                            ScrollView{
+                                VStack{
+                                    ForEach(state.tagList, id: \.localId){ tag in
+                                        TagListItem(tag: tag)
+                                    }
+                                }.padding()
+                            }
                         }
                     }
                     
