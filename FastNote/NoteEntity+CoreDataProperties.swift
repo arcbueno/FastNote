@@ -2,7 +2,7 @@
 //  NoteEntity+CoreDataProperties.swift
 //  FastNote
 //
-//  Created by pedro.bueno on 28/09/24.
+//  Created by pedro.bueno on 01/10/24.
 //
 //
 
@@ -16,11 +16,11 @@ extension NoteEntity {
         return NSFetchRequest<NoteEntity>(entityName: "NoteEntity")
     }
 
-    @NSManaged public var remoteId: String?
     @NSManaged public var localId: UUID?
+    @NSManaged public var remoteId: String?
+    @NSManaged public var tags: String?
     @NSManaged public var text: String?
     @NSManaged public var userId: String?
-    @NSManaged public var tags: String?
 
 }
 

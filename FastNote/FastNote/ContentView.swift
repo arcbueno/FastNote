@@ -21,6 +21,8 @@ struct ContentView: View {
                         HomeView(viewModel: HomeViewModel())
                     case .list:
                         NoteListView(viewModel: NoteListViewModel())
+                    case .tag:
+                        TagsView(viewModel: TagsListViewModel())
                     case .login:
                         HomeView(viewModel: HomeViewModel())
                     case .signup:
@@ -58,6 +60,7 @@ enum Pages {
     case list
     case login
     case signup
+    case tag
 }
 
 #Preview {

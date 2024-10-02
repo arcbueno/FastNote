@@ -16,14 +16,18 @@ struct DrawerBody: View {
             RowView(isSelected: currentPage == .newNote, imageName: "plus.app.fill", title: "Nova nota"){
                 onSelect(Pages.newNote)
             }
-            RowView(isSelected: currentPage == .list,imageName: "list.bullet.rectangle.fill", title: "Todas as notas"){
+            RowView(isSelected: currentPage == .list, imageName: "list.bullet.rectangle.fill", title: "Todas as notas"){
                 onSelect(Pages.list)
             }
+            RowView(isSelected: currentPage == .tag, imageName: "tag.fill", title: "Tags"){
+                onSelect(Pages.tag)
+            }
+            
+            Spacer()
             RowView(isSelected: currentPage == .login,imageName: "person.fill", title: "Login"){
                 onSelect(Pages.login)
             }
             
-            Spacer()
         }
         .padding(.top, 12)
     }

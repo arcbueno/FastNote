@@ -2,7 +2,7 @@
 //  NoteEntity+CoreDataClass.swift
 //  FastNote
 //
-//  Created by pedro.bueno on 28/09/24.
+//  Created by pedro.bueno on 01/10/24.
 //
 //
 
