@@ -36,4 +36,20 @@ class NoteRepository {
 //                return self.todoOfflineService.getTodos()
 //            }.eraseToAnyPublisher()
     }
+    
+    func delete(note: Note) -> AnyPublisher<Bool, Error>{
+        // TODO: Implementar remover pela API
+       
+        
+        return Future<Bool, Error> { promise in
+            do {
+                try self.noteDao.delete(note: note)
+                promise(.success(true))
+            } catch {
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+        
+    }
 }

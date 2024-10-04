@@ -39,11 +39,23 @@ class NoteListViewModel : ObservableObject {
         
     }
     
-    //    func save(text: String) -> Bool {
-    //        let note = Note(text: text)
-    //        noteRepository.saveNewNote(note: note)
-    //        return true
-    //    }
+    func delete(note: Note) -> Bool{
+        var success = false
+        noteRepository.delete(note: note)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Failed to fetch todos: \(error)")
+                }
+            } receiveValue: { [weak self] result in
+                self?.getAll()
+                success = result
+            }.store(in: &cancellables)
+        return success
+    }
     
 }
 

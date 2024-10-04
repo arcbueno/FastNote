@@ -55,4 +55,25 @@ class NoteDAO {
             }
         }
     }
+    
+    func delete(note: Note) throws {
+        let context = persistentContainer.newBackgroundContext()
+        try context.performAndWait {
+            let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            let existingNoteEntities = try context.fetch(request)
+            let existingNoteIds = existingNoteEntities.compactMap { $0.localId }
+            
+            if(existingNoteIds.contains(note.localId)){
+                let noteEntity = existingNoteEntities.first { entity in
+                    entity.localId == note.localId
+                }
+                if let noteEntity = noteEntity{
+                    context.delete(noteEntity)
+                }
+                
+            }
+            
+            try context.save()
+        }
+    }
 }

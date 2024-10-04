@@ -15,6 +15,9 @@ class HomeViewModel : ObservableObject {
     @Published var state: HomeState = FillingHomeState()
     
     func save(text: String) -> Bool {
+        if (text.isEmpty) {
+            return false
+        }
         let note = Note(text: text)
         noteRepository.saveNewNote(note: note)
         return true

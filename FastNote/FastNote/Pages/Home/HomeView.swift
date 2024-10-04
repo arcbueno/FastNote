@@ -24,13 +24,13 @@ struct HomeView: View {
                             Button(action: {
                                 let success = viewModel.save(text: text)
                                 if(success){
-                                    toast = Toast(style: .success, message: "Saved.", width: 160)
+                                    toast = Toast(style: .success, message: "Deleted with success", width: 160)
                                     text = ""
                                 }
                             }){
                                 Text("Salvar")
                             }
-                        }
+                        }.padding()
                         TextField("Comprar pão...", text: $text,  axis: .vertical)
                         Spacer()
                     }
