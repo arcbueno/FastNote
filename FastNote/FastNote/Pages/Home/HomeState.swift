@@ -9,5 +9,10 @@ protocol HomeState {}
 
 class LoadingHomeState: HomeState {}
 
-class FillingHomeState: HomeState {}
+class FillingHomeState: HomeState {
+    let tags: Array<Label>
+    init(tags: Array<Label>) {
+        self.tags = tags
+    }
+}
 

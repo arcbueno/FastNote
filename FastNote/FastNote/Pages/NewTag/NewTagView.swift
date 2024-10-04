@@ -27,7 +27,7 @@ struct NewTagView: View {
                         Button(action: {
                             let success = viewModel.save(name: self.name, color: self.color.hex().replacingOccurrences(of: "#", with: ""))
                             if(success){
-                                toast = Toast(style: .success, message: "Saved.", width: 160)
+                                toast = Toast(style: .success, message: "Salvo com sucesso", width: geometry.size.width/2)
                                 name = ""
                                 dismiss()
                             }

@@ -11,6 +11,7 @@
 		A8D41F972CACBD650018A962 /* NoteEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41F942CACBD650018A962 /* NoteEntity+CoreDataClass.swift */; };
 		A8D41F982CACBD650018A962 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41F952CACBD650018A962 /* NoteEntity+CoreDataProperties.swift */; };
 		A8D41F992CACBD650018A962 /* LabelEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41F932CACBD650018A962 /* LabelEntity+CoreDataProperties.swift */; };
+		A8E730412CB06680001882E2 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = A8E730402CB06680001882E2 /* WrappingHStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E730412CB06680001882E2 /* WrappingHStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +129,7 @@
 			);
 			name = FastNote;
 			packageProductDependencies = (
+				A8E730402CB06680001882E2 /* WrappingHStack */,
 			);
 			productName = FastNote;
 			productReference = A865CBED2CA63DD40087F0EA /* FastNote.app */;
@@ -210,6 +213,9 @@
 			);
 			mainGroup = A865CBE42CA63DD40087F0EA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A8E7303F2CB0663A001882E2 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A865CBEE2CA63DD40087F0EA /* Products */;
 			projectDirPath = "";
@@ -610,6 +616,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A8E7303F2CB0663A001882E2 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A8E730402CB06680001882E2 /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8E7303F2CB0663A001882E2 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A865CBE52CA63DD40087F0EA /* Project object */;
 }

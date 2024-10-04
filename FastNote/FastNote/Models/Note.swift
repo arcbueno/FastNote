@@ -7,18 +7,19 @@
 
 import Foundation
 
-struct Note: Codable {    
+struct Note: Codable {
     let remoteId: String
     let localId: UUID
     let text: String
     let userId: String
-    //    var tags: [Tag]
+    let tags: [Label]
     
-    init(remoteId: String = "", localId: UUID = UUID(), text: String = "", userId: String = "") {
+    init(remoteId: String = "", localId: UUID = UUID(), text: String = "", userId: String = "", tags: [Label] = []) {
         self.remoteId = remoteId
         self.localId = localId
         self.text = text
         self.userId = userId
+        self.tags = tags
     }
     
     init(entity: NoteEntity) {
@@ -26,28 +27,6 @@ struct Note: Codable {
         localId = entity.localId ?? UUID()
         text = entity.text ?? ""
         userId = entity.userId ?? ""
+        tags = TagMapper.stringToTagList(listString: entity.tags ?? "")
     }
 }
-
-//public class NoteEntity: NSManagedObject {
-//    @NSManaged public var remoteId: String
-//    @NSManaged public var localId: String
-//    @NSManaged public var text: String
-//    @NSManaged public var userId: String
-//    @NSManaged public var tagsJSON: String
-//
-//    var tags : [String] {
-//        get { decodeArray(from: \.tagsJSON) }
-//        set { tagsJSON = encodeArray(newValue) }
-//    }
-//
-//    private func decodeArray(from keyPath: KeyPath<NoteEntity,String>) -> [String] {
-//        return (try? JSONDecoder().decode([String].self, from: Data(self[keyPath: keyPath].utf8))) ?? []
-//    }
-//
-//    private func encodeArray(_ array: [String]) -> String {
-//        guard let data = try? JSONEncoder().encode(array) else { return "" }
-//        return String(data: data, encoding: .utf8)!
-//    }
-//
-//}

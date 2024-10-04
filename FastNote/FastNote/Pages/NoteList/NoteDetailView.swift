@@ -20,7 +20,7 @@ struct NoteDetailView: View {
                     Button(action: {
                         let success = viewModel.delete(note: self.note)
                         if(success){
-                            toast = Toast(style: .success, message: "Saved.", width: 160)
+                            toast = Toast(style: .success, message: "Deletado com sucesso", width: geometry.size.width/2)
                         }
                     }){
                         Text("Deletar")

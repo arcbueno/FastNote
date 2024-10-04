@@ -16,8 +16,6 @@ struct TagListItem: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundColor(.black)
                     .lineLimit(5)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
                 Spacer()
                 Circle()
                     .fill(Color(hex: tag.color))

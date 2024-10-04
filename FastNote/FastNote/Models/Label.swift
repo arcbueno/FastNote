@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-struct Label: Codable{
+struct Label: Codable, Hashable{
     var localId: UUID
     var remoteId: String
     var name: String

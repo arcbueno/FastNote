@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WrappingHStack
 
 struct NoteListItem: View {
     var note: Note
@@ -19,8 +20,13 @@ struct NoteListItem: View {
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer()
-            }.padding()
+            }
+            
+            WrappingHStack(note.tags, id: \.self){ tag in
+                TagListItem(tag: tag).padding(4)
+            }
         }
+        .padding()
         .cornerRadius(15)
         .overlay(
             RoundedRectangle(cornerRadius: 15)

@@ -47,6 +47,7 @@ class NoteDAO {
                         noteEntity.remoteId = note.remoteId
                         noteEntity.text = note.text
                         noteEntity.userId = note.userId
+                        noteEntity.tags = TagMapper.tagListToString(tagList: note.tags)
                     }
                 }
                 try context.save()

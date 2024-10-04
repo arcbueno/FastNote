@@ -6,21 +6,44 @@
 //
 
 import SwiftUI
+import Combine
 
 class HomeViewModel : ObservableObject {
     let noteRepository: NoteRepository = NoteRepository(
         noteAPI: NoteAPI(),
         noteDao: NoteDAO(persistentContainer: PersistenceController.shared.container)
     )
-    @Published var state: HomeState = FillingHomeState()
+    let tagRepository: LabelRepository = LabelRepository(labelAPI: LabelAPI(), labelDao: LabelDAO(persistentContainer: PersistenceController.shared.container))
+    @Published var state: HomeState = FillingHomeState(tags: [])
+    var cancellables = Set<AnyCancellable>()
     
-    func save(text: String) -> Bool {
+    init() {
+        getAllTags()
+    }
+    
+    func save(text: String, tags: [Label]) -> Bool {
         if (text.isEmpty) {
             return false
         }
-        let note = Note(text: text)
+        let note = Note(text: text, tags: tags)
         noteRepository.saveNewNote(note: note)
         return true
+    }
+    
+    func getAllTags(){
+        tagRepository.getLabels()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Failed to fetch todos: \(error)")
+                }
+            } receiveValue: { [weak self] tags in
+                self?.state = FillingHomeState(tags: tags)
+            }.store(in: &cancellables)
+        
     }
     
 }
