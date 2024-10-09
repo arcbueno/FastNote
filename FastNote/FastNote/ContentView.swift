@@ -9,8 +9,15 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
+    let syncService: SyncRegistryService
     @State var isOpen = false
     @State var currentPage: Pages = .newNote
+    
+    init() {
+        let persistanceContainer = PersistenceController.shared.container
+        self.syncService = SyncRegistryService(syncRegistryDao: SyncRegistryDAO(persistentContainer: persistanceContainer), tagDao: LabelDAO(persistentContainer: persistanceContainer), noteDao: NoteDAO(persistentContainer: persistanceContainer), noteAPI: NoteAPI(), tagAPI: LabelAPI())
+    }
     
     var body: some View {
         NavigationView {
@@ -27,6 +34,8 @@ struct ContentView: View {
                         HomeView(viewModel: HomeViewModel())
                     case .signup:
                         HomeView(viewModel: HomeViewModel())
+                    case .sync:
+                        HomeView(viewModel: HomeViewModel())
                     }
                 }
                 .toolbarBackground(.yellow, for: .navigationBar)
@@ -41,6 +50,7 @@ struct ContentView: View {
             } drawer: {
                 Color.orange
                 DrawerBody(
+                    syncService: self.syncService,
                     currentPage: currentPage, onSelect: { page in
                         print(page)
                         self.currentPage = page
@@ -61,6 +71,7 @@ enum Pages {
     case login
     case signup
     case tag
+    case sync
 }
 
 #Preview {

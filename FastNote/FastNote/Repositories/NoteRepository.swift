@@ -12,15 +12,19 @@ import Combine
 class NoteRepository {
     let noteAPI: NoteAPI
     let noteDao: NoteDAO
+    let syncRegistryRepository: SyncRegistryRepository
     var cancellables = Set<AnyCancellable>()
     
-    init(noteAPI: NoteAPI, noteDao: NoteDAO) {
+    init(noteAPI: NoteAPI, noteDao: NoteDAO, syncRegistryRepository: SyncRegistryRepository) {
         self.noteAPI = noteAPI
         self.noteDao = noteDao
+        self.syncRegistryRepository = syncRegistryRepository
     }
     
     func saveNewNote(note: Note){
-        return noteDao.save(notes: [note])
+        noteDao.save(notes: [note])
+        
+        syncRegistryRepository.add(entityLocalId: note.localId, entityType: SyncRegistryUtils.NOTE_ENTITY, operationType: SyncRegistryUtils.CREATE_OPERATION, entityRemoteId: note.remoteId)
     }
     
     func getNotes() -> AnyPublisher<[Note], Error> {

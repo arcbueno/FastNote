@@ -15,9 +15,6 @@ struct TagMultiSelectDropdown: View {
     var body: some View {
         ZStack(alignment: .leading) {
             GeometryReader{ geometry in
-                
-                
-                
                 Button(action: { isExpanded.toggle() }) {
                     HStack {
                         Text(selectedOptions.isEmpty ? "Tags" : selectedOptions.map({ label in

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct DrawerBody: View {
+    let syncService: SyncRegistryService
     var currentPage: Pages
     var onSelect: ((Pages) -> ())
+    @State private var toast: Toast? = nil
     
     var body: some View {
         VStack(alignment: .leading){
@@ -24,12 +26,16 @@ struct DrawerBody: View {
             }
             
             Spacer()
-            RowView(isSelected: currentPage == .login,imageName: "person.fill", title: "Login"){
-                onSelect(Pages.login)
+            RowView(isSelected: currentPage == .sync,imageName: "arrow.triangle.2.circlepath", title: "Sync"){
+                Task{
+                    await syncService.synchronizeAll()
+                    toast = Toast(style: .info, message: "Sincronizado com sucesso", width: 200)
+                }
             }
             
         }
         .padding(.top, 12)
+        .toastView(toast: $toast)
     }
     
     func RowView(isSelected: Bool,imageName: String, title: String, hideDivider: Bool = false, action: @escaping (()->())) -> some View{

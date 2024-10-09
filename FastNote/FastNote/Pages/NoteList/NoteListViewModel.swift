@@ -13,7 +13,8 @@ class NoteListViewModel : ObservableObject {
     
     let noteRepository: NoteRepository = NoteRepository(
         noteAPI: NoteAPI(),
-        noteDao: NoteDAO(persistentContainer: PersistenceController.shared.container)
+        noteDao: NoteDAO(persistentContainer: PersistenceController.shared.container),
+        syncRegistryRepository: SyncRegistryRepository(syncRegistryDao: SyncRegistryDAO(persistentContainer: PersistenceController.shared.container))
     )
     
     @Published var state: NoteListState = LoadingListState()

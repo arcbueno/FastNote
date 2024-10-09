@@ -16,6 +16,23 @@ class NoteDAO {
         self.persistentContainer = persistentContainer
     }
     
+    func getUnsynchronizedNotes() -> AnyPublisher<[Note], Error> {
+        let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "remoteId = %@", argumentArray: [""])
+        let context = persistentContainer.viewContext
+        
+        return Future<[Note], Error> { promise in
+            do {
+                let noteEntities = try context.fetch(request)
+                let notes = noteEntities.map { Note(entity: $0) }
+                promise(.success(notes))
+            } catch {
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
     func getNotes() -> AnyPublisher<[Note], Error> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
         let context = persistentContainer.viewContext
