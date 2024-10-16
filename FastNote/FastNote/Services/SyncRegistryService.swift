@@ -17,6 +17,7 @@ class SyncRegistryService{
     let tagAPI: LabelAPI
     
     var allRegistries: [SyncRegistryEntity] = Array<SyncRegistryEntity>()
+    var cancellables = Set<AnyCancellable>()
     
     init(syncRegistryDao: SyncRegistryDAO, tagDao: LabelDAO, noteDao: NoteDAO, noteAPI: NoteAPI, tagAPI: LabelAPI) {
         self.syncRegistryDao = syncRegistryDao
@@ -156,10 +157,46 @@ class SyncRegistryService{
         let result = await noteAPI.getNotes()
         switch(result){
         case .success(let notes):
-            self.noteDao.save(notes: notes)
+            let notesFilled = fillNotesWithTags(notes: notes)
+            self.noteDao.save(notes: notesFilled)
         case .failure(let error):
             print(error.localizedDescription)
         }
+    }
+    
+    private func fillNotesWithTags(notes:[Note]) -> [Note] {
+        var newNotes = Array<Note>()
+        let allTags = getAllLabels()
+        
+        for note in notes {
+            var currentNote = note
+            
+            if(!note.tagsIds.isEmpty){
+                let tags = allTags.filter{ note.tagsIds.contains($0.remoteId)}
+                currentNote.tags = tags
+            }
+            
+            newNotes.append(currentNote)
+        }
+        
+        return newNotes
+    }
+    
+    private func getAllLabels() -> [Label]{
+        var labels = Array<Label>()
+        tagDao.getLabels()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Failed to fetch todos: \(error)")
+                }
+            } receiveValue: { tags in
+                labels = tags
+            }.store(in: &cancellables)
+        return labels
     }
     
     private func getUnsychronizedTags() -> [Label] {
