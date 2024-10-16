@@ -55,11 +55,42 @@ class SyncRegistryService{
         getUnsychronizedNotes(notesToCreate: &notesToCreate, notesToDelete: &notesToDelete)
         
         print(notesToCreate)
-        for note in notesToCreate{
-            await noteAPI.createNote(note: note)
+        for note in notesToCreate {
+             await noteAPI.createNote(note: note) { result in
+                 switch(result){
+                 case .success(let message):
+                     if(message == "OK"){
+                         do{
+                             try self.noteDao.delete(note: note)
+                         }
+                         catch{
+                             print("Error deleting note after sync \(error.localizedDescription)")
+                         }
+                     }
+                     
+                 case .failure(let error):
+                     print(error)
+                 }
+            }
+            
         }
         
         // TODO: Create notes to delete
+        
+        noteDao.clear()
+        await downloadAllNotes()
+    }
+    
+    
+    
+    private func downloadAllNotes() async{
+        let result = await noteAPI.getNotes()
+        switch(result){
+        case .success(let notes):
+            self.noteDao.save(notes: notes)
+        case .failure(let error):
+            print(error.localizedDescription)
+        }
     }
     
     private func getUnsychronizedNotes(notesToCreate: inout [Note], notesToDelete: inout [Note]){
@@ -77,7 +108,7 @@ class SyncRegistryService{
                 unsynchronizedNotes = notes
             }.store(in: &cancellables)
         
-        let notesToCreate: [Note] = unsynchronizedNotes.filter{ note in
+        notesToCreate = unsynchronizedNotes.filter{ note in
             return allRegistries.contains(where: { registry in
                 registry.entityLocalId == note.localId && registry.operationType == SyncRegistryUtils.CREATE_OPERATION
             })

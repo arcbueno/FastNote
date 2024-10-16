@@ -1,6 +1,24 @@
 {
-  "originHash" : "50578bb08258a739890c5d3d0a495ba4213b27b4dbbbc844c23e93aa2d80550b",
+  "originHash" : "9a547811815ab5dd32f4349a66d837dd3b9d5cea6ace325f4076cef63a5f2373",
   "pins" : [
+    {
+      "identity" : "mapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lyft/mapper",
+      "state" : {
+        "revision" : "c8f848c8a496e8dbfafa4fba5bb44723bacbe853",
+        "version" : "10.0.1"
+      }
+    },
+    {
+      "identity" : "objectmapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tristanhimmelman/ObjectMapper",
+      "state" : {
+        "revision" : "6021c6035e83a306047348666f6400dc61445d3b",
+        "version" : "4.4.3"
+      }
+    },
     {
       "identity" : "wrappinghstack",
       "kind" : "remoteSourceControl",

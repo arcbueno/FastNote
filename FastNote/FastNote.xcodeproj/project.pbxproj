@@ -12,6 +12,8 @@
 		A8D41F982CACBD650018A962 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41F952CACBD650018A962 /* NoteEntity+CoreDataProperties.swift */; };
 		A8D41F992CACBD650018A962 /* LabelEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D41F932CACBD650018A962 /* LabelEntity+CoreDataProperties.swift */; };
 		A8E730412CB06680001882E2 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = A8E730402CB06680001882E2 /* WrappingHStack */; };
+		A8F13FC02CBF1EB600AF1361 /* Mapper in Frameworks */ = {isa = PBXBuildFile; productRef = A8F13FBF2CBF1EB600AF1361 /* Mapper */; };
+		A8F13FC22CBF27E600AF1361 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = A8F13FC12CBF27E600AF1361 /* ObjectMapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8F13FC22CBF27E600AF1361 /* ObjectMapper in Frameworks */,
 				A8E730412CB06680001882E2 /* WrappingHStack in Frameworks */,
+				A8F13FC02CBF1EB600AF1361 /* Mapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +134,8 @@
 			name = FastNote;
 			packageProductDependencies = (
 				A8E730402CB06680001882E2 /* WrappingHStack */,
+				A8F13FBF2CBF1EB600AF1361 /* Mapper */,
+				A8F13FC12CBF27E600AF1361 /* ObjectMapper */,
 			);
 			productName = FastNote;
 			productReference = A865CBED2CA63DD40087F0EA /* FastNote.app */;
@@ -215,6 +221,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A8E7303F2CB0663A001882E2 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				A8F13FBD2CBF1DC500AF1361 /* XCRemoteSwiftPackageReference "mapper" */,
+				A8F13FBE2CBF1EA700AF1361 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A865CBEE2CA63DD40087F0EA /* Products */;
@@ -626,6 +634,22 @@
 				minimumVersion = 2.2.11;
 			};
 		};
+		A8F13FBD2CBF1DC500AF1361 /* XCRemoteSwiftPackageReference "mapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lyft/mapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.1;
+			};
+		};
+		A8F13FBE2CBF1EA700AF1361 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -633,6 +657,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8E7303F2CB0663A001882E2 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
+		};
+		A8F13FBF2CBF1EB600AF1361 /* Mapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8F13FBD2CBF1DC500AF1361 /* XCRemoteSwiftPackageReference "mapper" */;
+			productName = Mapper;
+		};
+		A8F13FC12CBF27E600AF1361 /* ObjectMapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8F13FBE2CBF1EA700AF1361 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
+			productName = ObjectMapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

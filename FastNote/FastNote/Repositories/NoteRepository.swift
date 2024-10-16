@@ -29,16 +29,6 @@ class NoteRepository {
     
     func getNotes() -> AnyPublisher<[Note], Error> {
         return noteDao.getNotes().eraseToAnyPublisher()
-//        noteAPI.getNotes()
-//            .map { [weak self] notes in
-//                // Adicionar criação de uuid
-//                self?.noteDao.save(notes: notes)
-//                return todos
-//            }
-//            .catch { error -> AnyPublisher<[Todo], Error> in
-//                print("Failed to fetch todos from service: \(error)")
-//                return self.todoOfflineService.getTodos()
-//            }.eraseToAnyPublisher()
     }
     
     func delete(note: Note) -> AnyPublisher<Bool, Error>{

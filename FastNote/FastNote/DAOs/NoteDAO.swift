@@ -63,7 +63,6 @@ class NoteDAO {
                         noteEntity.localId = note.localId
                         noteEntity.remoteId = note.remoteId
                         noteEntity.text = note.text
-                        noteEntity.userId = note.userId
                         noteEntity.tags = TagMapper.tagListToString(tagList: note.tags)
                     }
                 }
@@ -72,6 +71,32 @@ class NoteDAO {
                 print("Failed to save notes to core data: \(error)")
             }
         }
+    }
+    
+    func clear() {
+        
+        do {
+            
+            let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            let context = persistentContainer.viewContext
+            
+            
+            
+            let noteEntities = try context.fetch(request)
+            for object in noteEntities {
+                
+                if let remoteId = object.remoteId{
+                    if(!remoteId.isEmpty){
+                        context.delete(object)
+                    }
+                }
+                
+                
+            }
+        } catch let error {
+            print("Detele all Notes error:", error)
+        }
+        
     }
     
     func delete(note: Note) throws {
