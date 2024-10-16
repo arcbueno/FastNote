@@ -17,19 +17,16 @@ class SyncRegistryDAO {
         self.persistentContainer = persistentContainer
     }
     
-    func getAllSyncRegistries() -> AnyPublisher<[SyncRegistryEntity], Error> {
+    func getAllSyncRegistries() async -> Result<[SyncRegistryEntity], Error> {
         let request: NSFetchRequest<SyncRegistryEntity> = SyncRegistryEntity.fetchRequest()
         let context = persistentContainer.viewContext
         
-        return Future<[SyncRegistryEntity], Error> { promise in
-            do {
-                let syncRegistries = try context.fetch(request)
-                promise(.success(syncRegistries))
-            } catch {
-                promise(.failure(error))
-            }
+        do {
+            let syncRegistries = try context.fetch(request)
+            return .success(syncRegistries)
+        } catch {
+            return .failure(error)
         }
-        .eraseToAnyPublisher()
     }
     
     func add(entityLocalId: UUID?, entityType: Int, operationType: Int, entityRemoteId: String)  {

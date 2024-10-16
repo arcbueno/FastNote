@@ -16,21 +16,18 @@ class NoteDAO {
         self.persistentContainer = persistentContainer
     }
     
-    func getUnsynchronizedNotes() -> AnyPublisher<[Note], Error> {
+    func getUnsynchronizedNotes() -> Result<[Note], Error> {
         let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
         request.predicate = NSPredicate(format: "remoteId = %@", argumentArray: [""])
         let context = persistentContainer.viewContext
         
-        return Future<[Note], Error> { promise in
-            do {
-                let noteEntities = try context.fetch(request)
-                let notes = noteEntities.map { Note(entity: $0) }
-                promise(.success(notes))
-            } catch {
-                promise(.failure(error))
-            }
+        do {
+            let noteEntities = try context.fetch(request)
+            let notes = noteEntities.map { Note(entity: $0) }
+            return .success(notes)
+        } catch {
+            return .failure(error)
         }
-        .eraseToAnyPublisher()
     }
     
     func getNotes() -> AnyPublisher<[Note], Error> {
@@ -74,25 +71,12 @@ class NoteDAO {
     }
     
     func clear() {
-        
         do {
-            
-            let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NoteEntity")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             let context = persistentContainer.viewContext
             
-            
-            
-            let noteEntities = try context.fetch(request)
-            for object in noteEntities {
-                
-                if let remoteId = object.remoteId{
-                    if(!remoteId.isEmpty){
-                        context.delete(object)
-                    }
-                }
-                
-                
-            }
+            try context.execute(deleteRequest)
         } catch let error {
             print("Detele all Notes error:", error)
         }

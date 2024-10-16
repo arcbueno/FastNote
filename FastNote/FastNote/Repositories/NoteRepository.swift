@@ -32,9 +32,7 @@ class NoteRepository {
     }
     
     func delete(note: Note) -> AnyPublisher<Bool, Error>{
-        // TODO: Implementar remover pela API
-       
-        
+        syncRegistryRepository.add(entityLocalId: note.localId, entityType: SyncRegistryUtils.NOTE_ENTITY, operationType: SyncRegistryUtils.DELETE_OPERATION, entityRemoteId: note.remoteId)
         return Future<Bool, Error> { promise in
             do {
                 try self.noteDao.delete(note: note)

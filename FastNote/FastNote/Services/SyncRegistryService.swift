@@ -15,7 +15,6 @@ class SyncRegistryService{
     let noteDao: NoteDAO
     let noteAPI: NoteAPI
     let tagAPI: LabelAPI
-    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
     
     var allRegistries: [SyncRegistryEntity] = Array<SyncRegistryEntity>()
     
@@ -28,54 +27,80 @@ class SyncRegistryService{
     }
     
     func synchronizeAll()async {
-        getAllRegistries()
+        await getAllRegistries()
+        // syncronizeTags
         await synchronizeNotes()
     }
     
-    func getAllRegistries(){
-        syncRegistryDao.getAllSyncRegistries()
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Failed to fetch todos: \(error)")
-                }
-            } receiveValue: { registries in
-                self.allRegistries = registries
-            }.store(in: &cancellables)
+    func deleteSyncRegistry(syncRegistry: SyncRegistryEntity) {
+        do {
+            try syncRegistryDao.delete(syncRegistry: syncRegistry)
+        }catch{
+            print("Error deleting sync registry: \(error)")
+        }
+    }
+    
+    func getAllRegistries() async {
+        let result = await syncRegistryDao.getAllSyncRegistries()
+        switch result {
+        case .success(let syncRegistries):
+            self.allRegistries = syncRegistries
+        case .failure(let error):
+            print("Failed to fetch todos: \(error)")
+        }
         print(allRegistries)
     }
     
     func synchronizeNotes() async {
         var notesToCreate: [Note] = Array<Note>()
-        var notesToDelete: [Note] = Array<Note>()
+        let notesToCreateRegistries: [SyncRegistryEntity] = allRegistries.filter { registry in
+            return registry.operationType == SyncRegistryUtils.CREATE_OPERATION && registry.entityType == SyncRegistryUtils.NOTE_ENTITY
+        }
+        let notesRegistriesToDelete: [SyncRegistryEntity] = allRegistries.filter { registry in
+            return registry.entityType == SyncRegistryUtils.NOTE_ENTITY && registry.operationType == SyncRegistryUtils.DELETE_OPERATION
+        }
         
-        getUnsychronizedNotes(notesToCreate: &notesToCreate, notesToDelete: &notesToDelete)
+        notesToCreate = getUnsychronizedNotes()
         
         print(notesToCreate)
         for note in notesToCreate {
-             await noteAPI.createNote(note: note) { result in
-                 switch(result){
-                 case .success(let message):
-                     if(message == "OK"){
-                         do{
-                             try self.noteDao.delete(note: note)
-                         }
-                         catch{
-                             print("Error deleting note after sync \(error.localizedDescription)")
-                         }
-                     }
-                     
-                 case .failure(let error):
-                     print(error)
-                 }
+            await noteAPI.createNote(note: note) { result in
+                switch(result){
+                case .success(let message):
+                    if(message == "OK"){
+                        do{
+                            try self.noteDao.delete(note: note)
+                            let registryToDelete = notesToCreateRegistries.filter { registry in
+                                return registry.entityLocalId == note.localId
+                            }.first
+                            self.deleteSyncRegistry(syncRegistry: registryToDelete!)
+                        }
+                        catch{
+                            print("Error deleting note after sync \(error.localizedDescription)")
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
             }
             
         }
         
-        // TODO: Create notes to delete
+        for registry in notesRegistriesToDelete {
+            await noteAPI.deleteNote(remoteId: registry.entityRemoteId!) { result in
+                switch(result){
+                case .success(let message):
+                    if(message == "OK"){
+                        print("Remote delete Note OK")
+                        self.deleteSyncRegistry(syncRegistry: registry)
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        }
         
         noteDao.clear()
         await downloadAllNotes()
@@ -93,22 +118,17 @@ class SyncRegistryService{
         }
     }
     
-    private func getUnsychronizedNotes(notesToCreate: inout [Note], notesToDelete: inout [Note]){
+    private func getUnsychronizedNotes() -> [Note] {
         var unsynchronizedNotes: [Note] = Array<Note>()
-        noteDao.getUnsynchronizedNotes()
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Failed to fetch todos: \(error)")
-                }
-            } receiveValue: { notes in
-                unsynchronizedNotes = notes
-            }.store(in: &cancellables)
+        let result = noteDao.getUnsynchronizedNotes()
+        switch result {
+        case .success(let notes):
+            unsynchronizedNotes = notes
+        case .failure(let error):
+            print("Failed to fetch todos: \(error)")
+        }
         
-        notesToCreate = unsynchronizedNotes.filter{ note in
+        return unsynchronizedNotes.filter{ note in
             return allRegistries.contains(where: { registry in
                 registry.entityLocalId == note.localId && registry.operationType == SyncRegistryUtils.CREATE_OPERATION
             })

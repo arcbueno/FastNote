@@ -75,4 +75,32 @@ class NoteAPI {
             completion(.failure(.errorRequest(error: error.localizedDescription)))
         }
     }
+    
+    func deleteNote(remoteId: String, completion: @escaping (Result<String, RequestError>) -> Void) async -> Void {
+        guard let url = URL(string: "\(baseURL)notes/\(NetworkUtils.userId)/\(remoteId)") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            var result: Result<String, RequestError> = .success("")
+            let statusCode = (response as! HTTPURLResponse).statusCode
+
+            if (statusCode == 200 || statusCode == 204) {
+                result = .success("OK")
+                print("SUCCESS")
+            } else {
+                result = .failure(.errorRequest(error: ""))
+                print("FAILURE")
+            }
+            
+            completion(result)
+        }
+
+        task.resume()
+    }
 }

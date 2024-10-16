@@ -31,7 +31,6 @@ struct Note: Codable {
         case id, content, tags, userId
     }
     
-    // We don't want to decode `fullName` from the JSON
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         remoteId = try container.decode(String.self, forKey: .id)

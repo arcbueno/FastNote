@@ -21,20 +21,17 @@ class SyncRegistryRepository {
         return syncRegistryDao.add(entityLocalId: entityLocalId, entityType: entityType, operationType: operationType, entityRemoteId: entityRemoteId)
     }
     
-    func getAllRegitries() -> AnyPublisher<[SyncRegistryEntity], Error> {
-        return syncRegistryDao.getAllSyncRegistries().eraseToAnyPublisher()
+    func getAllRegitries() async -> Result<[SyncRegistryEntity], Error> {
+        return await syncRegistryDao.getAllSyncRegistries()
     }
     
-    func delete(syncRegistry: SyncRegistryEntity) -> AnyPublisher<Bool, Error>{
-        return Future<Bool, Error> { promise in
-            do {
-                try self.syncRegistryDao.delete(syncRegistry: syncRegistry)
-                promise(.success(true))
-            } catch {
-                promise(.failure(error))
-            }
+    func delete(syncRegistry: SyncRegistryEntity) -> Result<Bool, Error>{
+        do {
+            try self.syncRegistryDao.delete(syncRegistry: syncRegistry)
+            return .success(true)
+        } catch {
+            return .failure(error)
         }
-        .eraseToAnyPublisher()
         
     }
 }
