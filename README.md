@@ -6,6 +6,5 @@ App criado para ser leve e simples, já que todos os outros apps de notas (notio
 
 ## Funcionalidades
 - Criação de nova nota rapidamente
-- Login e Criação de conta
 - Armazenamento local das notas
 - Sincronização com API Externa
