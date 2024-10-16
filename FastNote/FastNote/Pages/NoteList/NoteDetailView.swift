@@ -15,17 +15,20 @@ struct NoteDetailView: View {
     var body: some View {
         GeometryReader{ geometry in
             VStack(alignment: .leading){
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        let success = viewModel.delete(note: self.note)
-                        if(success){
-                            toast = Toast(style: .success, message: "Deletado com sucesso", width: geometry.size.width/2)
+                if(!note.remoteId.isEmpty){
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            let success = viewModel.delete(note: self.note)
+                            if(success){
+                                toast = Toast(style: .success, message: "Deletado com sucesso", width: geometry.size.width/2)
+                            }
+                        }){
+                            Text("Deletar")
                         }
-                    }){
-                        Text("Deletar")
                     }
                 }
+                
                 HStack{
                     Text(note.text)
                         .font(.system(size: 14, weight: .regular))
@@ -46,6 +49,6 @@ struct NoteDetailView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background(.yellow)
         }.toastView(toast: $toast)
-            
+        
     }
 }

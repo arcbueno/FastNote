@@ -10,30 +10,21 @@ import Foundation
 import Combine
 
 class LabelRepository {
-    let labelAPI: LabelAPI
+    let syncRegistryRepository: SyncRegistryRepository
     let labelDao: LabelDAO
-    var cancellables = Set<AnyCancellable>()
     
-    init(labelAPI: LabelAPI, labelDao: LabelDAO) {
-        self.labelAPI = labelAPI
+    init(labelDao: LabelDAO, syncRegistryRepository: SyncRegistryRepository) {
         self.labelDao = labelDao
+        self.syncRegistryRepository = syncRegistryRepository
     }
     
     func saveNewLabel(label: Label){
-        return labelDao.save(labels: [label])
+        
+        labelDao.save(labels: [label])
+        syncRegistryRepository.add(entityLocalId: label.localId, entityType: SyncRegistryUtils.TAG_ENTITY, operationType: SyncRegistryUtils.CREATE_OPERATION, entityRemoteId: label.remoteId)
     }
     
     func getLabels() -> AnyPublisher<[Label], Error> {
         return labelDao.getLabels().eraseToAnyPublisher()
-//        labelAPI.getLabels()
-//            .map { [weak self] labels in
-//                // Adicionar criação de uuid
-//                self?.labelDao.save(labels: labels)
-//                return todos
-//            }
-//            .catch { error -> AnyPublisher<[Todo], Error> in
-//                print("Failed to fetch todos from service: \(error)")
-//                return self.todoOfflineService.getTodos()
-//            }.eraseToAnyPublisher()
     }
 }

@@ -28,7 +28,7 @@ class SyncRegistryService{
     
     func synchronizeAll()async {
         await getAllRegistries()
-        // syncronizeTags
+        await synchronizeTags()
         await synchronizeNotes()
     }
     
@@ -49,6 +49,42 @@ class SyncRegistryService{
             print("Failed to fetch todos: \(error)")
         }
         print(allRegistries)
+    }
+    
+    func synchronizeTags() async {
+        var tagsToCreate: [Label] = Array<Label>()
+        let tagsToCreateRegistries: [SyncRegistryEntity] = allRegistries.filter { registry in
+            return registry.operationType == SyncRegistryUtils.CREATE_OPERATION && registry.entityType == SyncRegistryUtils.TAG_ENTITY
+        }
+        
+        tagsToCreate = getUnsychronizedTags()
+        
+        print(tagsToCreate)
+        for tag in tagsToCreate {
+            await tagAPI.createLabel(label: tag) { result in
+                switch(result){
+                case .success(let message):
+                    if(message == "OK"){
+                        do{
+                            try self.tagDao.delete(tag: tag)
+                            let registryToDelete = tagsToCreateRegistries.filter { registry in
+                                return registry.entityLocalId == tag.localId
+                            }.first
+                            self.deleteSyncRegistry(syncRegistry: registryToDelete!)
+                        }
+                        catch{
+                            print("Error deleting note after sync \(error.localizedDescription)")
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+        }
+        
+        tagDao.clear()
+        await downloadAllTags()
     }
     
     func synchronizeNotes() async {
@@ -106,7 +142,15 @@ class SyncRegistryService{
         await downloadAllNotes()
     }
     
-    
+    private func downloadAllTags() async{
+        let result = await tagAPI.getLabels()
+        switch(result){
+        case .success(let tags):
+            self.tagDao.save(labels: tags)
+        case .failure(let error):
+            print(error.localizedDescription)
+        }
+    }
     
     private func downloadAllNotes() async{
         let result = await noteAPI.getNotes()
@@ -115,6 +159,23 @@ class SyncRegistryService{
             self.noteDao.save(notes: notes)
         case .failure(let error):
             print(error.localizedDescription)
+        }
+    }
+    
+    private func getUnsychronizedTags() -> [Label] {
+        var unsynchronizedTags: [Label] = Array<Label>()
+        let result = tagDao.getUnsynchronizedLabels()
+        switch result {
+        case .success(let tags):
+            unsynchronizedTags = tags
+        case .failure(let error):
+            print("Failed to fetch todos: \(error)")
+        }
+        
+        return unsynchronizedTags.filter{ tag in
+            return allRegistries.contains(where: { registry in
+                registry.entityLocalId == tag.localId && registry.operationType == SyncRegistryUtils.CREATE_OPERATION && registry.entityType == SyncRegistryUtils.TAG_ENTITY
+            })
         }
     }
     
@@ -130,7 +191,7 @@ class SyncRegistryService{
         
         return unsynchronizedNotes.filter{ note in
             return allRegistries.contains(where: { registry in
-                registry.entityLocalId == note.localId && registry.operationType == SyncRegistryUtils.CREATE_OPERATION
+                registry.entityLocalId == note.localId && registry.operationType == SyncRegistryUtils.CREATE_OPERATION && registry.entityType == SyncRegistryUtils.NOTE_ENTITY
             })
         }
     }

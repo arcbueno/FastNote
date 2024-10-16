@@ -13,14 +13,12 @@ struct Label: Codable, Hashable{
     var remoteId: String
     var name: String
     var color: String
-    var userId: String
 
-    init(remoteId: String = "", localId: UUID = UUID(), name: String = "", color: String = "", userId: String = "") {
+    init(remoteId: String = "", localId: UUID = UUID(), name: String = "", color: String = "") {
         self.remoteId = remoteId
         self.localId = localId
         self.name = name
         self.color = color
-        self.userId = userId
     }
     
     init(entity: LabelEntity) {
@@ -28,7 +26,26 @@ struct Label: Codable, Hashable{
         localId = entity.localId ?? UUID()
         name = entity.name ?? ""
         color = entity.color ?? ""
-        userId = entity.userId ?? ""
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, name, color, userId
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        remoteId = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        color = try container.decode(String.self, forKey: .color)
+        localId = UUID()
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(remoteId, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(color, forKey: .color)
+        try container.encode(NetworkUtils.userId, forKey: .userId)
     }
 }
 

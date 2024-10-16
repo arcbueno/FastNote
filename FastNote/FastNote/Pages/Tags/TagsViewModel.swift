@@ -12,8 +12,8 @@ import Combine
 class TagsListViewModel : ObservableObject {
     
     let tagRepository: LabelRepository = LabelRepository(
-        labelAPI: LabelAPI(),
-        labelDao: LabelDAO(persistentContainer: PersistenceController.shared.container)
+        labelDao: LabelDAO(persistentContainer: PersistenceController.shared.container),
+        syncRegistryRepository: SyncRegistryRepository(syncRegistryDao: SyncRegistryDAO(persistentContainer: PersistenceController.shared.container))
     )
     
     @Published var state: TagsStateState = LoadingTagsState()

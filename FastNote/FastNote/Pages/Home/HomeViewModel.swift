@@ -14,7 +14,7 @@ class HomeViewModel : ObservableObject {
         noteDao: NoteDAO(persistentContainer: PersistenceController.shared.container),
         syncRegistryRepository: SyncRegistryRepository(syncRegistryDao: SyncRegistryDAO(persistentContainer: PersistenceController.shared.container))
     )
-    let tagRepository: LabelRepository = LabelRepository(labelAPI: LabelAPI(), labelDao: LabelDAO(persistentContainer: PersistenceController.shared.container))
+    let tagRepository: LabelRepository = LabelRepository( labelDao: LabelDAO(persistentContainer: PersistenceController.shared.container), syncRegistryRepository: SyncRegistryRepository(syncRegistryDao: SyncRegistryDAO(persistentContainer: PersistenceController.shared.container)))
     @Published var state: HomeState = FillingHomeState(tags: [])
     var cancellables = Set<AnyCancellable>()
     
@@ -42,7 +42,10 @@ class HomeViewModel : ObservableObject {
                     print("Failed to fetch todos: \(error)")
                 }
             } receiveValue: { [weak self] tags in
-                self?.state = FillingHomeState(tags: tags)
+                var syncedTags = tags.filter{ tag in
+                    return !tag.remoteId.isEmpty
+                }
+                self?.state = FillingHomeState(tags: syncedTags)
             }.store(in: &cancellables)
         
     }
